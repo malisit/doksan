@@ -1,28 +1,29 @@
 # doksan
-A simple console application that enables hackers to get latest soccer scores and fixtures.
-At the present moment, ```doksan``` only supports 18 teams that consist Turkish Super League.
-All data is being parsed from ```http://www.livesoccertv.com/```.
+A simple console application that enables hackers to get latest soccer scores and fixtures.  
+At the present moment, ```doksan``` only supports 18 teams that consist Turkish Super League.  
+All data is being parsed from ```http://www.livesoccertv.com/```.  
 
-##Installing
-Run ```pub global activate doksan``` on command line.
+## Installing
+- Run ```pub global activate doksan``` on command line.  
+- Add your ```pub-cache```'s ```bin``` directory to ```PATH```. (e.g. Add ```export PATH="$PATH":"~/.pub-cache/bin"``` to .bashrc)  
 
 ## Usage
-This application is pure Dart and works on only Dart VM.
+This application is pure Dart and works on only Dart VM.  
 
 ### Flags and Options:
-**Option:** ```-l, --league```: Specify which league you want to get information about. Must be provided.<br/>
-**Option:** ```-t, --team```: Specify which team you want to get information about. Optional.<br/>
-**Flag:** ```-r, --isResults```: Get previous results or not. When used with a team name, it returns results of last 5 games.<br/>
-**Flag:** ```-f, --isNextMatches```: Get next games or not. When used with a team name, it returns next 5 games.<br/>
+**Option:** ```-l, --league```: Specify which league you want to get information about. Must be provided.  
+**Option:** ```-t, --team```: Specify which team you want to get information about. Optional.  
+**Flag:** ```-r, --isResults```: Get previous results or not. When used with a team name, it returns results of last 5 games.  
+**Flag:** ```-f, --isNextMatches```: Get next games or not. When used with a team name, it returns next 5 games.  
 
 
 ### Sample Usage:
-Sample Input:<br/>
+Sample Input:  
 ```
 dart main.dart -l tr -t trabzonspor -f
 ```
 
-Sample Output:<br/>
+Sample Output:  
 
 ```
 Feb 11  8:00 Osmanlıspor vs Trabzonspor

@@ -42,22 +42,26 @@ class Doksan {
 	void getHtml() {
 		if (this.team==null) {
 			if (this.isResults && this.isNextMatches){
-				this.uri = 'http://www.livesoccertv.com/';
-				getLeagueResultsAndFixture();
+				this.uri = leagues[this.league]['_l_name'];
+				this.getLeagueResultsAndFixture();
 			} else if (this.isResults) {
-				getLeagueResults();
+				this.uri = leagues[this.league]['_l_name_r'];
+				this.getLeagueResults();
 			} else if (this.isNextMatches) {
-				getLeagueFixture();
+				this.uri = leagues[this.league]['_l_name_f'];
+				this.getLeagueFixture();
+			} else {
+				this.getTable();
 			}
 		} else {
 			if (this.isResults && this.isNextMatches){
-				this.uri = 'http://www.livesoccertv.com/' + leagues[this.league][this.team];
+				this.uri = leagues[this.league][this.team];
 				this.getTeamResultsAndFixture();
 			} else if (this.isResults) {
-				this.uri = 'http://www.livesoccertv.com/' + leagues[this.league][this.team];
+				this.uri = leagues[this.league][this.team];
 				this.getTeamResults();
 			} else if (this.isNextMatches) {
-				this.uri = 'http://www.livesoccertv.com/' + leagues[this.league][this.team];
+				this.uri = leagues[this.league][this.team];
 				this.getTeamFixture();
 			}
 		}
@@ -69,27 +73,26 @@ class Doksan {
 		http.read(uri)
 			.then((contents) {
 				var document = parse(contents);
-				var scores = document.getElementsByClassName("matchrow");
+				var results = document.getElementsByClassName("compgrp")[0];
+				var games = results.getElementsByClassName("blocks");
 				
-	    		for (final i in scores){
-	    			var dateTime = i.getElementsByClassName("ts");
-	    			var td = i.getElementsByTagName("td")[4];
-	    			String date = dateTime[0].text;
-	    			String time = dateTime[1].text;
-	    			String scoreLine = td.text.replaceFirst(new RegExp(r"^\s+"), "");
-	    			try {
-						var teamsAndScores = scoreLine.split("-");
+				
+	    		for (final game in games){
+	    			var dateTime = game.getElementsByClassName("kick_t")[0].text.split(" ");
+	    			String date = dateTime[0];
+	    			String time = dateTime[1];
+	    			String score = game.getElementsByClassName("score_link");
 
-						//Will be used
-						var homeName = teamsAndScores[0][0];
-						var awayName = teamsAndScores[1][1];
-						var homeScore = teamsAndScores[0][1];
-						var awayScore = teamsAndScores[1][0];
-					} catch(e) {
-						continue;
-					}
+	    			if (score.length == 0) {
+	    				score = game.getElementsByClassName("score")[0].text;
+	    			} else {
+	    				score = score[0].text;
+	    			}
+	    			
+	    			String home_team = game.getElementsByClassName("home_o")[0].text.split("'>")[0];
+	    			String away_team = game.getElementsByClassName("away_o")[0].text.split("'>")[0];
 
-					print(date + " " + time + " " + scoreLine);
+					print(date + " " + time + " " + home_team + " " + score + " " + away_team);
 
 
 	    		}
@@ -101,27 +104,26 @@ class Doksan {
 		http.read(uri)
 			.then((contents) {
 				var document = parse(contents);
-				var scores = document.getElementsByClassName("matchrow");
+				var results = document.getElementsByClassName("compgrp")[1];
+				var games = results.getElementsByClassName("blocks");
 				
-	    		for (final i in scores){
-	    			var dateTime = i.getElementsByClassName("ts");
-	    			var td = i.getElementsByTagName("td")[4];
-	    			String date = dateTime[0].text;
-	    			String time = dateTime[1].text;
-	    			String scoreLine = td.text.replaceFirst(new RegExp(r"^\s+"), "");
-	    			try {
-						var teamsAndScores = scoreLine.split("vs");
+				
+	    		for (final game in games){
+	    			var dateTime = game.getElementsByClassName("kick_t")[0].text.split(" ");
+	    			String date = dateTime[0];
+	    			String time = dateTime[1];
+	    			String score = game.getElementsByClassName("score_link");
 
-						//Will be used
-						var homeName = teamsAndScores[0][0];
-						var awayName = teamsAndScores[1][1];
-						var homeScore = teamsAndScores[0][1];
-						var awayScore = teamsAndScores[1][0];
-					} catch(e) {
-						continue;
-					}
+	    			if (score.length == 0) {
+	    				score = game.getElementsByClassName("score")[0].text;
+	    			} else {
+	    				score = score[0].text;
+	    			}
+	    			
+	    			String home_team = game.getElementsByClassName("home_o")[0].text.split("'>")[0];
+	    			String away_team = game.getElementsByClassName("away_o")[0].text.split("'>")[0];
 
-					print(date + " " + time + " " + scoreLine);
+					print(date + " " + time + " " + home_team + " " + score + " " + away_team);
 
 
 	    		}
@@ -133,31 +135,139 @@ class Doksan {
 		http.read(uri)
 			.then((contents) {
 				var document = parse(contents);
-				var scores = document.getElementsByClassName("matchrow");
+				var results = document.getElementsByClassName("compgrp");
+
+				for (final result in results){
+					var games = result.getElementsByClassName("blocks");
 				
-	    		for (final i in scores){
-	    			var dateTime = i.getElementsByClassName("ts");
-	    			var td = i.getElementsByTagName("td")[4];
-	    			String date = dateTime[0].text;
-	    			String time = dateTime[1].text;
-	    			String scoreLine = td.text.replaceFirst(new RegExp(r"^\s+"), "");
-	    			try {
-						var teamsAndScores = scoreLine.split("vs");
+				
+		    		for (final game in games){
+		    			var dateTime = game.getElementsByClassName("kick_t")[0].text.split(" ");
+		    			String date = dateTime[0];
+		    			String time = dateTime[1];
+		    			String score = game.getElementsByClassName("score_link");
 
-						//Will be used
-						var homeName = teamsAndScores[0][0];
-						var awayName = teamsAndScores[1][1];
-						var homeScore = teamsAndScores[0][1];
-						var awayScore = teamsAndScores[1][0];
-					} catch(e) {
-						
-					}
+		    			if (score.length == 0) {
+		    				score = game.getElementsByClassName("score")[0].text;
+		    			} else {
+		    				score = score[0].text;
+		    			}
+		    			
+		    			String home_team = game.getElementsByClassName("home_o")[0].text.split("'>")[0];
+		    			String away_team = game.getElementsByClassName("away_o")[0].text.split("'>")[0];
 
-					print(date + " " + time + " " + scoreLine);
+						print(date + " " + time + " " + home_team + " " + score + " " + away_team);
 
 
+		    		}
 	    		}
 	  		}); 
+	}
+
+	void getLeagueResultsAndFixture() {
+		uri = this.uri;
+		http.read(uri)
+			.then((contents) {
+				var document = parse(contents);	
+				var results = document.getElementsByClassName("compgrp");
+				var days = document.getElementsByClassName("ncet");
+
+				for (var i = 0; i < results.length; i++) {
+					var week = days[i].getElementsByClassName("ncet_round")[0].text;
+					var date = days[i].getElementsByClassName("ncet_date")[0].text;
+					var games = results[i].getElementsByClassName("blocks");
+					print("Week: " + week + ", " + date);
+					for (final game in games){
+		    			var time = game.getElementsByClassName("kick")[0].text;
+		    			String score = game.getElementsByClassName("score_link");
+
+		    			if (score.length == 0) {
+		    				score = game.getElementsByClassName("score")[0].text;
+		    			} else {
+		    				score = score[0].text;
+		    			}
+		    			
+		    			String home_team = game.getElementsByClassName("home")[0].text.split("'>")[0];
+		    			String away_team = game.getElementsByClassName("away")[0].text.split("'>")[0];
+
+						print(time+ " " + home_team + " " + score + " " + away_team);
+
+
+		    		}
+		    		print("");
+				}
+
+			}); 
+	}
+
+	void getLeagueResults() {
+		uri = this.uri;
+		http.read(uri)
+			.then((contents) {
+				var document = parse(contents);	
+				var results = document.getElementsByClassName("compgrp").sublist(0, 4);
+				var days = document.getElementsByClassName("ncet").sublist(0, 4);
+
+				for (var i = 0; i < results.length; i++) {
+					var week = days[i].getElementsByClassName("ncet_round")[0].text;
+					var date = days[i].getElementsByClassName("ncet_date")[0].text;
+					var games = results[i].getElementsByClassName("blocks");
+					print("Week: " + week + ", " + date);
+					for (final game in games){
+		    			var time = game.getElementsByClassName("kick")[0].text;
+		    			String score = game.getElementsByClassName("score_link");
+
+		    			if (score.length == 0) {
+		    				score = game.getElementsByClassName("score")[0].text;
+		    			} else {
+		    				score = score[0].text;
+		    			}
+		    			
+		    			String home_team = game.getElementsByClassName("home")[0].text.split("'>")[0];
+		    			String away_team = game.getElementsByClassName("away")[0].text.split("'>")[0];
+
+						print(time+ " " + home_team + " " + score + " " + away_team);
+
+
+		    		}
+		    		print("");
+				}
+			}); 
+	}
+
+	void getLeagueFixture() {
+		uri = this.uri;
+		http.read(uri)
+			.then((contents) {
+				var document = parse(contents);	
+				var results = document.getElementsByClassName("compgrp").sublist(0, 4);
+				var days = document.getElementsByClassName("ncet").sublist(0, 4);
+
+				for (var i = 0; i < results.length; i++) {
+					var week = days[i].getElementsByClassName("ncet_round")[0].text;
+					var date = days[i].getElementsByClassName("ncet_date")[0].text;
+					var games = results[i].getElementsByClassName("blocks");
+					print("Week: " + week + ", " + date);
+					for (final game in games){
+		    			var time = game.getElementsByClassName("kick")[0].text;
+		    			String score = game.getElementsByClassName("score_link");
+
+		    			if (score.length == 0) {
+		    				score = game.getElementsByClassName("score")[0].text;
+		    			} else {
+		    				score = score[0].text;
+		    			}
+		    			
+		    			String home_team = game.getElementsByClassName("home")[0].text.split("'>")[0];
+		    			String away_team = game.getElementsByClassName("away")[0].text.split("'>")[0];
+
+						print(time+ " " + home_team + " " + score + " " + away_team);
+
+
+		    		}
+		    		print("");
+				}
+			}); 
 	}
 
 }

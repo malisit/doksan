@@ -51,6 +51,7 @@ class Doksan {
 				this.uri = leagues[this.league]['_l_name_f'];
 				this.getLeagueFixture();
 			} else {
+				this.uri = leagues[this.league]['_l_name_t'];
 				this.getTable();
 			}
 		} else {
@@ -206,15 +207,22 @@ class Doksan {
 			.then((contents) {
 				var document = parse(contents);	
 				var results = document.getElementsByClassName("compgrp").sublist(0, 4);
+
 				var days = document.getElementsByClassName("ncet").sublist(0, 4);
+				String weekNum = days[0].getElementsByClassName("ncet_round")[0].text;
 
 				for (var i = 0; i < results.length; i++) {
-					var week = days[i].getElementsByClassName("ncet_round")[0].text;
-					var date = days[i].getElementsByClassName("ncet_date")[0].text;
+					String week = days[i].getElementsByClassName("ncet_round")[0].text;
+
+					if (week != weekNum) {
+						break;
+					}	
+
+					String date = days[i].getElementsByClassName("ncet_date")[0].text;
 					var games = results[i].getElementsByClassName("blocks");
 					print("Week: " + week + ", " + date);
 					for (final game in games){
-		    			var time = game.getElementsByClassName("kick")[0].text;
+		    			String time = game.getElementsByClassName("kick")[0].text;
 		    			String score = game.getElementsByClassName("score_link");
 
 		    			if (score.length == 0) {
@@ -241,15 +249,22 @@ class Doksan {
 			.then((contents) {
 				var document = parse(contents);	
 				var results = document.getElementsByClassName("compgrp").sublist(0, 4);
+
 				var days = document.getElementsByClassName("ncet").sublist(0, 4);
+				String weekNum = days[0].getElementsByClassName("ncet_round")[0].text;
 
 				for (var i = 0; i < results.length; i++) {
-					var week = days[i].getElementsByClassName("ncet_round")[0].text;
-					var date = days[i].getElementsByClassName("ncet_date")[0].text;
+					String week = days[i].getElementsByClassName("ncet_round")[0].text;
+
+					if (week != weekNum) {
+						break;
+					}	
+
+					String date = days[i].getElementsByClassName("ncet_date")[0].text;
 					var games = results[i].getElementsByClassName("blocks");
 					print("Week: " + week + ", " + date);
 					for (final game in games){
-		    			var time = game.getElementsByClassName("kick")[0].text;
+		    			String time = game.getElementsByClassName("kick")[0].text;
 		    			String score = game.getElementsByClassName("score_link");
 
 		    			if (score.length == 0) {
@@ -268,6 +283,37 @@ class Doksan {
 		    		print("");
 				}
 			}); 
+	}
+
+	void getTable() {
+		uri = this.uri;
+		http.read(uri)
+			.then((contents) {
+				var document = parse(contents);	
+				var table = document.getElementById("standings_1a");
+				var standings = table.getElementsByClassName("standing-tbl");
+				print("Rank Team Point Matches Win Draw Lost Goals Difference Form");
+				for (final standing in standings) {
+					String rank = standing.getElementsByClassName("rank")[0].text;//.split("\">")[1].split(".<")[0];
+					String team = standing.getElementsByClassName("team")[0].text;//.split("\">")[1].split("</")[0];
+					String point = standing.getElementsByClassName("point")[0].text;
+					String matchesPlayed = standing.getElementsByClassName("mp")[0].text;
+					String winNum = standing.getElementsByClassName("winx")[0].text;
+					String drawNum = standing.getElementsByClassName("draw")[0].text;
+					String lostNum = standing.getElementsByClassName("lost")[0].text;
+					String goalsScored = standing.getElementsByClassName("goalfa")[0].text;
+					String goalsDiff = standing.getElementsByClassName("goaldiff")[0].text;
+					var forms = standing.getElementsByClassName("c43px");
+					String formStatus = "";
+					for (final form in forms) {
+						formStatus = formStatus + form.text + " ";
+					}
+
+					print(rank + " " + team + " " + point + " " + matchesPlayed + " " + winNum + " " + drawNum + " " + lostNum + " " +
+						goalsScored + " " + goalsDiff + " " + formStatus
+					 );
+				}
+			});
 	}
 
 }

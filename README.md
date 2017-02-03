@@ -5,7 +5,7 @@ All data is being parsed from ```http://www.scorespro.com/```.
 
 ## Installing
 - Run ```pub global activate doksan``` on command line.  
-- Add your ```pub-cache```'s ```bin``` directory to ```PATH```. (e.g. Add ```export PATH="$PATH":"~/.pub-cache/bin"``` to .bashrc)  
+- Add your ```pub-cache```'s ```bin``` directory to ```PATH```. (e.g. Add ```export PATH="$PATH":"~/.pub-cache/bin"``` ```to .bashrc```)  
 
 ## Usage
 This application is pure Dart and works on only Dart VM.  
@@ -89,19 +89,37 @@ Week: 23, Tue 31 Jan 2017
 21:45   Middlesbrough 1 - 1 West Bromwich  
 21:45   Sunderland AFC 0 - 0 Tottenham  
 21:45   Swansea 2 - 1 Southampton  
+```
 
-Week: 22, Sun 22 Jan 2017
-18:30   Chelsea FC 2 - 0 Hull City  
-16:15   Arsenal FC 2 - 1 Burnley FC  
-14:00  Southampton 3 - 0 Leicester City  
+Sample Input:  
+```
+doksan -l en
+```
 
-Week: 22, Sat 21 Jan 2017
-19:30   Manchester City 2 - 2 Tottenham  
-17:00   Bournemouth 2 - 2 Watford FC  
-17:00  Crystal Palace 0 - 1 Everton FC  
-17:00   Middlesbrough 1 - 3 West Ham  
-17:00   Stoke City 1 - 1 Manchester United  
-17:00   West Bromwich 2 - 0 Sunderland
+Sample Output:  
+
+```
+Rank Team Point Matches Win Draw Lost Goals Difference Form
+1. Chelsea FC 56 23 18 2 3 48 - 16 32 D W W L W 
+2. Tottenham 47 23 13 8 2 45 - 16 29 D D W W W 
+3. Arsenal FC 47 23 14 5 4 51 - 25 26 L W W D W 
+4. Liverpool FC 46 23 13 7 3 52 - 28 24 D L D D W 
+5. Manchester City 46 23 14 4 5 47 - 28 19 W D L W L 
+6. Manchester United 42 23 11 9 3 33 - 21 12 D D D W W 
+7. Everton FC 37 23 10 7 6 34 - 24 10 D W W W D 
+8. West Bromwich 33 23 9 6 8 31 - 29 2 D W L W W 
+9. Stoke City 29 23 7 8 8 29 - 35 -6 D D W W L 
+10. Burnley FC 29 23 9 2 12 25 - 33 -8 W L W L W 
+11. West Ham 28 23 8 4 11 29 - 40 -11 L W W L L 
+12. Southampton 27 23 7 6 10 23 - 28 -5 L W L L L 
+13. Watford FC 27 23 7 6 10 27 - 39 -12 W D D L L 
+14. Bournemouth 26 23 7 5 11 32 - 41 -9 L D L D W 
+15. Middlesbrough 21 23 4 9 10 19 - 26 -7 D L D D L 
+16. Leicester City 21 23 5 6 12 24 - 38 -14 L L L D W 
+17. Swansea 21 23 6 3 14 28 - 52 -24 W W L W L 
+18. Crystal Palace 19 23 5 4 14 32 - 41 -9 W L L L L 
+19. Hull City 17 23 4 5 14 20 - 47 -27 D L W L D 
+20. Sunderland AFC 16 23 4 4 15 20 - 42 -22 D L L D L 
 ```
 
 ## TODO

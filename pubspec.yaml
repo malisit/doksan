@@ -1,5 +1,5 @@
 name: doksan
-version: 0.0.6
+version: 0.0.7
 author: Muhammed Ali Sit <sitmuhammedali@gmail.com>
 description: A simple console application that enables hackers to get latest soccer scores and fixtures.
 homepage: https://github.com/malisit/doksan

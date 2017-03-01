@@ -39,6 +39,12 @@ class Doksan {
 		getHtml();
 	}
 
+	void checkLeagueAndTeam() {
+		// TODO
+		// Check the names if they exist in the variables
+		// if so, return true, if not return false
+	}
+	
 	void getHtml() {
 		if (this.team==null) {
 			if (this.isResults && this.isNextMatches){
@@ -137,11 +143,12 @@ class Doksan {
 			.then((contents) {
 				var document = parse(contents);
 				var results = document.getElementsByClassName("compgrp");
-
+				List resultsAndFixture = [];
 				for (final result in results){
 					var games = result.getElementsByClassName("blocks");
-				
-				
+					
+					List lines = [];
+					
 		    		for (final game in games){
 		    			var dateTime = game.getElementsByClassName("kick_t")[0].text.split(" ");
 		    			String date = dateTime[0];
@@ -157,10 +164,18 @@ class Doksan {
 		    			String home_team = game.getElementsByClassName("home_o")[0].text.split("'>")[0];
 		    			String away_team = game.getElementsByClassName("away_o")[0].text.split("'>")[0];
 
-						print(date + " " + time + " " + home_team + " " + score + " " + away_team);
+						String line = date + " " + time + " " + home_team + " " + score + " " + away_team;
 
-
+						lines.add(line);
 		    		}
+
+		    		resultsAndFixture.add(lines);
+
+	    		}
+	    		resultsAndFixture[0] = resultsAndFixture[0].reversed.toList();
+	    		resultsAndFixture = resultsAndFixture.expand((i) => i).toList();
+	    		for (final line in resultsAndFixture){
+	    			print(line);
 	    		}
 	  		}); 
 	}

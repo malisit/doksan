@@ -125,4 +125,4 @@ Rank Team Point Matches Win Draw Lost Goals Difference Form
 ## TODO
 - Get scorer information for games.
 - Styling for proper listing of games.
-- Leagues and teams data other than Turkish League & Premier League.
+- Other leagues and teams.

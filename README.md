@@ -5,7 +5,7 @@ All data is being parsed from ```http://www.scorespro.com/```.
 
 ## Installing
 - Run ```pub global activate doksan``` on command line.  
-- Add your ```pub-cache```'s ```bin``` directory to ```PATH```. (e.g. Add ```export PATH="$PATH":"~/.pub-cache/bin"``` ```to .bashrc```)  
+- Add your ```pub-cache```'s ```bin``` directory to ```PATH```. (e.g. Add ```export PATH="$PATH":"~/.pub-cache/bin"``` to ```.bashrc```)  
 
 ## Usage
 This application is pure Dart and works on only Dart VM.  

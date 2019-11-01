@@ -126,8 +126,41 @@ class Doksan(object):
 		
 
 	def get_league_table(self):
-		# Get league table
-		pass
+		league = self.league
+		data = self.get_data()
+		link = data[league]["_l_name_t"]
+		html = self.get_html(link)
+		soup = BeautifulSoup(html, features="html.parser")
+
+		table = soup.find(True, {'id':'standings_1a'})
+		teams = table.find_all(True, {'class':['blocks']})
+		print("R T P M W D L GF GA F")
+		for team in teams:
+			rank = team.find("td", {'class':'rank'}).text
+			team_ = team.find("td", {'class':'team'}).text
+			point = team.find("td", {'class':'point'}).text
+			mp = team.find("td", {'class':'mp'}).text
+			wins = team.find("td", {'class':'winx'}).text
+			draw = team.find("td", {'class':'draw'}).text
+			lost = team.find("td", {'class':'lost'}).text
+			goals = team.find("td", {'class':'goalfa'}).text.split(" - ")
+			goals1 = goals[0]
+			goals2 = goals[1]
+			goals3 = str(int(goals1) - int(goals2))
+
+			form =  team.find("td", {'class':'form'})
+			form_ = form.find_all("span", {'class':'c43px'})
+			form_t = ""
+			for f in form_:
+				form_t += f.text + " "
+
+			l = [rank, team_, point, mp, wins, draw, lost, goals1, goals2, goals3, form_t]
+
+			print(" ".join(l))
+
+
+
+
 					
 
 

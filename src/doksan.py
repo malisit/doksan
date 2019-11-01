@@ -84,9 +84,46 @@ class Doksan(object):
 			self.get_results_fixture_team_aux(soup, False)
 
 
+	def get_results_fixture_league_aux(self, soup, limit=2):
+		results = soup.find("div",{'id':'national'})
+		rounds = results.find_all(True, {'class':['ncet', 'blocks']})
+		num_rounds = 0
+
+		for line in rounds:
+			round_ = line.find("li", {'class': 'ncet_round'})
+			if round_:
+				num_rounds += 1
+				if num_rounds > limit:
+					break
+				print(round_.text)
+				
+			else:
+				game = line.find("tbody")
+				kick_date = game.find("span", {'class':'kick_t_dt'}).text
+				kick_time = game.find("span", {'class':'kick_t_ko'}).text
+				home = game.find("td", {'class':'home'}).text
+				away = game.find("td", {'class':'away'}).text
+				score = game.find("td", {'class':'score'}).text
+
+				print(kick_date + " " + kick_time + " " + home + " " + score + " " + away)
+
+
 	def get_results_fixture_league(self):
-		# Get results and fixture for the league
-		pass
+		league = self.league
+		data = self.get_data()
+		
+		if self.results:
+			link = data[league]["_l_name_r"]
+			html = self.get_html(link)
+			soup = BeautifulSoup(html, features="html.parser")
+			self.get_results_fixture_league_aux(soup)
+
+		if self.fixture:
+			link = data[league]["_l_name_f"]
+			html = self.get_html(link)
+			soup = BeautifulSoup(html, features="html.parser")
+			self.get_results_fixture_league_aux(soup)
+		
 
 	def get_league_table(self):
 		# Get league table

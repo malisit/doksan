@@ -3,13 +3,10 @@ A simple console application that enables hackers to get latest soccer scores an
 At the present moment, ```doksan``` supports English Premier League, Spanish Primera Division and Turkish Super League.  
 All data is being parsed from ```http://www.scorespro.com/```.  
 
-## Installing
-- Run ```pub global activate doksan``` on command line.  
-- Add your ```pub-cache```'s ```bin``` directory to ```PATH```. (e.g. Add ```export PATH="$PATH":"~/.pub-cache/bin"``` to ```.bashrc```)  
+## Installation
+- Install via pip; ```pip install doksan```.
 
 ## Usage
-This application is pure Dart and works on only Dart VM.  
-
 ### Flags and Options:
 **Option:** ```-l, --league```: Specify which league you want to get information about. Must be provided.  
 **Option:** ```-t, --team```: Specify which team you want to get information about. Optional.  

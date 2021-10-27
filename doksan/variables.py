@@ -53,5 +53,31 @@ variables = {
 		"watford": "https://www.scorespro.com/soccer/england/teams/watford-fc-MTA4NTE=/",
 		"westham": "https://www.scorespro.com/soccer/england/teams/west-ham-MTA4MzA=/",
 		"wolves": "https://www.scorespro.com/soccer/england/teams/wolverhampton-wanderers-fc-MjQzMw==/"
+	},
+	"es": {
+		"_l_name":"https://www.scorespro.com/soccer/spain/laliga/",
+		"_l_name_r":"https://www.scorespro.com/soccer/spain/laliga/results/",
+		"_l_name_f":"https://www.scorespro.com/soccer/spain/laliga/fixtures/",
+		"_l_name_t":"https://www.scorespro.com/soccer/spain/laliga/standings/",
+		"alaves":"https://www.scorespro.com/soccer/spain/teams/deportivo-alaves-MTc4MjQ=/",
+		"bilbao":"https://www.scorespro.com/soccer/spain/teams/athletic-bilbao-MTgwMTk=/",
+		"atleticomadrid":"https://www.scorespro.com/soccer/spain/teams/atletico-madrid-MTgwNjM=/",
+		"barcelona":"https://www.scorespro.com/soccer/spain/teams/fc-barcelona-MTc3NjI=/",
+		"cadiz":"https://www.scorespro.com/soccer/spain/teams/cadiz-MTc4MDM=/",
+		"celtavigo":"https://www.scorespro.com/soccer/spain/teams/celta-vigo-NDE3Mg==/",
+		"elche":"https://www.scorespro.com/soccer/spain/teams/elche-MTc3ODc=/",
+		"espanyol":"https://www.scorespro.com/soccer/spain/teams/real-cd-espanyol-NDE3Mw==/",
+		"getafe":"https://www.scorespro.com/soccer/spain/teams/getafe-MTc5MTk=/",
+		"granada":"https://www.scorespro.com/soccer/spain/teams/granada-cf-Mzc4MDE=/",
+		"levante":"https://www.scorespro.com/soccer/spain/teams/levante-MTgwNTI=/",
+		"mallorca":"https://www.scorespro.com/soccer/spain/teams/mallorca-MTgwNTQ=/",
+		"osasuna":"https://www.scorespro.com/soccer/spain/teams/osasuna-NDE3OA==/",
+		"rayovallecano":"https://www.scorespro.com/soccer/spain/teams/rayo-vallecano-MjUxOTc=/",
+		"realbetis":"https://www.scorespro.com/soccer/spain/teams/real-betis-MTgwMjI=/",
+		"realmadrid":"https://www.scorespro.com/soccer/spain/teams/real-madrid-NDE4MA==/",
+		"realsociedad":"https://www.scorespro.com/soccer/spain/teams/real-sociedad-MTgwMzI=/",
+		"sevilla":"https://www.scorespro.com/soccer/spain/teams/sevilla-MjYyNTM=/",
+		"valencia":"https://www.scorespro.com/soccer/spain/teams/valencia-MTgwMzc=/",
+		"villareal":"https://www.scorespro.com/soccer/spain/teams/villarreal-MTc4NDI=/"
 	}
 }

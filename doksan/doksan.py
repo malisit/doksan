@@ -37,51 +37,91 @@ class Doksan(object):
 
 		return content_str
 
-	def get_results_fixture_team_aux(self, soup, is_results):
-		if is_results:
-			ind = 0
-		else:
-			ind = 1
+	def get_results_fixture_team_aux(self, soup, res):
+		results = soup.find("div", {'class':'Ja'})
+		games = results.find_all("div")
+		team_full = self.data[self.league][self.team]
 
-		results = soup.find_all("div",{'class':'compgrp'})[ind]
-		games = results.find_all("table",{'class':'blocks'})
-
-		if is_results:
-			games = games[::-1]
+		results = {}
+		fixtures = {}
 
 		for game in games:
-			kick_time = game.find("td", {'class':'kick_t'}).text
-			home = game.find("td", {'class':'home_o'}).text
-			away = game.find("td", {'class':'away_o'}).text
+			class_ = game.get("class")
+			if class_:
+				class_ = " ".join(class_)
+				if class_ == "xb":
+					dt = game.find(True, {'class':'yb'}).text
+					# results.append({dt})
+					results[dt] = []
+					fixtures[dt] = []
+				if class_ == "Tc Xc":
+					time = game.find(True, {'class':'gg cg'}).text
+					sides = game.find_all(True, {'class':'jh'})
+					side1, side2 = sides[0].text, sides[1].text
+					side1_score = game.find(True, {'class':'mh'}).text
+					side2_score = game.find(True, {'class':'nh'}).text
 
-			if is_results:
-				score = game.find("td", {'class':'score'}).text
-
-			else:
-				score = game.find("td", {'class':'score'})
-
-				if score and not score.text == "CANC":
-					score = "-"
-				else:
-					score = "CANC"
-
-			if score != "CANC":
-				print(kick_time + " " + home + " " + score + " " + away)
-
+					if time == "FT" and (res==0 or res==2) and ((team_full == side1) or (team_full == side2)):
+						return " ".join((time, side1, side1_score, "-", side2_score, side2))
+					elif time == "Postp." and (res==0 or res==2) and ((team_full == side1) or (team_full == side2)):
+						return " ".join((time, side1, "-", side2))
+					elif time !="FT" and (res==1 or res==2) and ((team_full == side1) or (team_full == side2)):
+						return " ".join((time, side1, "-", side2))
 
 	def get_results_fixture_team(self):
 		team = self.team
 		league = self.league
 
-		link = self.data[league][team]
+		link = self.data[league]["_l_name"]
+		last_round = self.find_last_round()
+
+		if self.results and self.fixture:
+			for i in range(last_round[1]-3,last_round[1]+5):
+				html = self.get_html(link+"?round={}".format(i))
+				soup = BeautifulSoup(html, features="html.parser")
+				print(self.get_results_fixture_team_aux(soup, 2))
+
+		if self.results and not self.fixture:
+			for i in range(last_round[1]-3,last_round[1]+1):
+				html = self.get_html(link+"?round={}".format(i))
+				soup = BeautifulSoup(html, features="html.parser")
+				print(self.get_results_fixture_team_aux(soup, 0))
+
+		if self.fixture and not self.results:
+			for i in range(last_round[1]+1,last_round[1]+5):
+				html = self.get_html(link+"?round={}".format(i))
+				soup = BeautifulSoup(html, features="html.parser")
+				print(self.get_results_fixture_team_aux(soup, 1))
+		
+
+
+	def find_last_round(self):
+		league = self.league
+
+		link = self.data[league]["_l_name"]
 		html = self.get_html(link)
 		soup = BeautifulSoup(html, features="html.parser")
-		
-		if self.results:
-			self.get_results_fixture_team_aux(soup, True)
+		results = soup.find_all(True, {'class':'Kg selectItem'})
 
-		if self.fixture:
-			self.get_results_fixture_team_aux(soup, False)
+		today = datetime.date.today()
+
+		for c, round_ in enumerate(results, 0):
+			round_ = round_.text.split(": ")[1].split(" - ")
+			last_date_of_round = round_[-1]
+			date_object = datetime.datetime.strptime(last_date_of_round, '%b %d').date()
+			if date_object.month>=8:
+				date_object = date_object.replace(year = 2022)
+			else:
+				date_object = date_object.replace(year = 2023)
+
+			if date_object > today:
+				last_round = (temp_, c)
+				break
+
+			temp_ = date_object
+
+		
+		return last_round
 
 
 	def get_results_fixture_league_aux(self, soup, res):

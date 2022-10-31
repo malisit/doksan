@@ -1,0 +1,12 @@
+LICENSE
+README.md
+setup.py
+doksan/__init__.py
+doksan/doksan.py
+doksan/variables.py
+doksan.egg-info/PKG-INFO
+doksan.egg-info/SOURCES.txt
+doksan.egg-info/dependency_links.txt
+doksan.egg-info/entry_points.txt
+doksan.egg-info/requires.txt
+doksan.egg-info/top_level.txt

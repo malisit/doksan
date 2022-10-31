@@ -17,22 +17,16 @@ All data is being parsed from ```http://www.scorespro.com/```.
 ### Sample Usage:
 Sample Input:  
 ```
-doksan -l tr -t trabzonspor -f
+doksan -l en -t liverpool -f
 ```
 
 Sample Output:  
 
 ```
-11.02.17 15:00  Osmanlispor  -  Trabzonspor  
-20.02.17 19:00  Trabzonspor  -  Alanyaspor  
-26.02.17 19:00  Konyaspor  -  Trabzonspor  
-05.03.17 19:00  Trabzonspor  -  Kardemir Karabukspor  
-08.03.17 19:00  Akhisar Belediye  -  Trabzonspor  
-12.03.17 19:00  Trabzonspor  -  Galatasaray  
-19.03.17 19:00  Rizespor  -  Trabzonspor  
-02.04.17 19:00  Trabzonspor  -  Besiktas  
-09.04.17 19:00  Antalyaspor  -  Trabzonspor  
-16.04.17 19:00  Trabzonspor  -  Genclerbirligi  
+16:30 Tottenham Hotspur - Liverpool
+15:00 Liverpool - Southampton
+17:30 Aston Villa - Liverpool
+20:00 Liverpool - Leicester City  
 ```
 
 Sample Input:  
@@ -43,26 +37,14 @@ doksan -l en -t chelsea -rf
 Sample Output:  
 
 ```
-31.01.17 22:00  Liverpool FC 1 - 1 Chelsea FC  
-28.01.17 17:00  Chelsea FC 4 - 0 Brentford FC  
-22.01.17 18:30  Chelsea FC 2 - 0 Hull City  
-14.01.17 19:30  Leicester City 0 - 3 Chelsea FC  
-08.01.17 17:00   Chelsea FC 4 - 1 Peterborough  
-04.01.17 22:00  Tottenham 2 - 0 Chelsea FC  
-31.12.16 17:00  Chelsea FC 4 - 2 Stoke City  
-26.12.16 17:00  Chelsea FC 3 - 0 Bournemouth  
-17.12.16 14:30  Crystal Palace 0 - 1 Chelsea FC  
-14.12.16 21:45  Sunderland AFC 0 - 1 Chelsea FC  
-04.02.17 14:30  Chelsea FC  -  Arsenal FC  
-12.02.17 15:30  Burnley FC  -  Chelsea FC  
-18.02.17 19:30  Wolverhampton  -  Chelsea FC  
-25.02.17 17:00  Chelsea FC  -  Swansea  
-04.03.17 17:00  West Ham  -  Chelsea FC  
-11.03.17 17:00  Chelsea FC  -  Watford FC  
-18.03.17 17:00  Stoke City  -  Chelsea FC  
-01.04.17 16:00  Chelsea FC  -  Crystal Palace  
-05.04.17 20:45  Chelsea FC  -  Manchester City  
-08.04.17 16:00  Bournemouth  -  Chelsea FC
+FT Aston Villa 0 - 2 Chelsea
+FT Brentford 0 - 0 Chelsea
+FT Chelsea 1 - 1 Manchester United
+FT Brighton & Hove Albion 4 - 1 Chelsea
+12:00 Chelsea - Arsenal
+17:30 Newcastle United - Chelsea
+17:30 Chelsea - AFC Bournemouth
+16:30 Nottingham Forest - Chelsea
 ```
 
 Sample Input:  
@@ -73,19 +55,22 @@ doksan -l en -r
 Sample Output:  
 
 ```
-Week: 23, Wed 01 Feb 2017
-22:00   Manchester United 0 - 0 Hull City  
-22:00   Stoke City 1 - 1 Everton FC  
-21:45   West Ham 0 - 4 Manchester City  
+October 24
+FT West Ham United 2 - 0 AFC Bournemouth
 
-Week: 23, Tue 31 Jan 2017
-22:00   Liverpool FC 1 - 1 Chelsea FC  
-21:45   Arsenal FC 1 - 2 Watford FC  
-21:45  Bournemouth 0 - 2 Crystal Palace  
-21:45   Burnley FC 1 - 0 Leicester City  
-21:45   Middlesbrough 1 - 1 West Bromwich  
-21:45   Sunderland AFC 0 - 0 Tottenham  
-21:45   Swansea 2 - 1 Southampton  
+October 29
+FT Leicester City 0 - 1 Manchester City
+FT AFC Bournemouth 2 - 3 Tottenham Hotspur
+FT Brentford 1 - 1 Wolverhampton Wanderers
+FT Brighton & Hove Albion 4 - 1 Chelsea
+FT Crystal Palace 1 - 0 Southampton
+FT Newcastle United 4 - 0 Aston Villa
+FT Fulham 0 - 0 Everton
+FT Liverpool 1 - 2 Leeds United
+
+October 30
+FT Arsenal 5 - 0 Nottingham Forest
+FT Manchester United 1 - 0 West Ham United
 ```
 
 Sample Input:  
@@ -96,27 +81,27 @@ doksan -l en
 Sample Output:  
 
 ```
-Rank Team Point Matches Win Draw Lost Goals Difference Form
-1. Chelsea FC 56 23 18 2 3 48 - 16 32 D W W L W 
-2. Tottenham 47 23 13 8 2 45 - 16 29 D D W W W 
-3. Arsenal FC 47 23 14 5 4 51 - 25 26 L W W D W 
-4. Liverpool FC 46 23 13 7 3 52 - 28 24 D L D D W 
-5. Manchester City 46 23 14 4 5 47 - 28 19 W D L W L 
-6. Manchester United 42 23 11 9 3 33 - 21 12 D D D W W 
-7. Everton FC 37 23 10 7 6 34 - 24 10 D W W W D 
-8. West Bromwich 33 23 9 6 8 31 - 29 2 D W L W W 
-9. Stoke City 29 23 7 8 8 29 - 35 -6 D D W W L 
-10. Burnley FC 29 23 9 2 12 25 - 33 -8 W L W L W 
-11. West Ham 28 23 8 4 11 29 - 40 -11 L W W L L 
-12. Southampton 27 23 7 6 10 23 - 28 -5 L W L L L 
-13. Watford FC 27 23 7 6 10 27 - 39 -12 W D D L L 
-14. Bournemouth 26 23 7 5 11 32 - 41 -9 L D L D W 
-15. Middlesbrough 21 23 4 9 10 19 - 26 -7 D L D D L 
-16. Leicester City 21 23 5 6 12 24 - 38 -14 L L L D W 
-17. Swansea 21 23 6 3 14 28 - 52 -24 W W L W L 
-18. Crystal Palace 19 23 5 4 14 32 - 41 -9 W L L L L 
-19. Hull City 17 23 4 5 14 20 - 47 -27 D L W L D 
-20. Sunderland AFC 16 23 4 4 15 20 - 42 -22 D L L D L 
+R T P M W D L GF GA GD
+1 Arsenal 31 12 10 1 1 30 11 19
+2 Manchester City 29 12 9 2 1 37 11 26
+3 Tottenham Hotspur 26 13 8 2 3 26 16 10
+4 Newcastle United 24 13 6 6 1 24 10 14
+5 Manchester United 23 12 7 2 3 17 16 1
+6 Chelsea 21 12 6 3 3 17 15 2
+7 Fulham 19 13 5 4 4 22 22 0
+8 Brighton & Hove Albion 18 12 5 3 4 19 15 4
+9 Liverpool 16 12 4 4 4 23 15 8
+10 Crystal Palace 16 12 4 4 4 13 16 -3
+11 Brentford 15 13 3 6 4 19 22 -3
+12 Everton 14 13 3 5 5 11 12 -1
+13 West Ham United 14 13 4 2 7 11 13 -2
+14 AFC Bournemouth 13 13 3 4 6 12 28 -16
+15 Leeds United 12 12 3 3 6 15 19 -4
+16 Aston Villa 12 13 3 3 7 11 20 -9
+17 Southampton 12 13 3 3 7 11 20 -9
+18 Leicester City 11 13 3 2 8 21 25 -4
+19 Wolverhampton Wanderers 10 13 2 4 7 6 19 -13
+20 Nottingham Forest 9 13 2 3 8 8 28 -20
 ```
 
 ## TODO

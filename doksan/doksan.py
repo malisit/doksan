@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
 import argparse
+import datetime
 import json
 import os
 import urllib.request
 
 from bs4 import BeautifulSoup
 
-from . import variables
+import variables
 
 class Doksan(object):
 	"""docstring for Doksan"""
@@ -205,7 +206,7 @@ class Doksan(object):
 
 	def get_league_table(self):
 		league = self.league
-		link = self.data[league]["_l_name_t"]
+		link = self.data[league]["_l_name"]
 		html = self.get_html(link)
 		soup = BeautifulSoup(html, features="html.parser")
 		table = soup.find(True, {'class':'Le'})

@@ -30,10 +30,7 @@ variables = {
 	},
 	"en": {
 		"_l_name":"https://www.livescores.com/football/england/premier-league/",
-		"_l_name_r":"https://www.livescores.com/football/england/premier-league/",
-		"_l_name_f":"https://www.livescores.com/football/england/premier-league/",
-		"_l_name_t":"https://www.livescores.com/football/england/premier-league/",
-		"arsenal": "https://www.scorespro.com/soccer/england/teams/arsenal-fc-MTE1NzM=/",
+		"arsenal": "Arsenal",
 		"astonvilla": "https://www.scorespro.com/soccer/england/teams/aston-villa-NTI1OQ==/",
 		"brentford": "https://www.scorespro.com/soccer/england/teams/brentford-fc-MTE3MTU=/",
 		"brighton": "https://www.scorespro.com/soccer/england/teams/brighton-MjQ2Mg==/",

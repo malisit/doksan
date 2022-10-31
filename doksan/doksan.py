@@ -129,30 +129,33 @@ class Doksan(object):
 		link = self.data[league]["_l_name_t"]
 		html = self.get_html(link)
 		soup = BeautifulSoup(html, features="html.parser")
-
-		table = soup.find(True, {'id':'standings_1a'})
-		teams = table.find_all(True, {'class':['blocks']})
-		print("R T P M W D L GF GA F")
+		table = soup.find(True, {'class':'Le'})
+		teams = table.find_all(True, {'class':['re']})
+		
+		print("R T P M W D L GF GA GD")
 		for team in teams:
-			rank = team.find("td", {'class':'rank'}).text
-			team_ = team.find("td", {'class':'team'}).text
-			point = team.find("td", {'class':'point'}).text
-			mp = team.find("td", {'class':'mp'}).text
-			wins = team.find("td", {'class':'winx'}).text
-			draw = team.find("td", {'class':'draw'}).text
-			lost = team.find("td", {'class':'lost'}).text
-			goals = team.find("td", {'class':'goalfa'}).text.split(" - ")
-			goals1 = goals[0]
-			goals2 = goals[1]
-			goals3 = str(int(goals1) - int(goals2))
+			tds = team.find_all("td")
+			
+			team_ = tds[1].text
+			rank = tds[0].text
+			temp = 0
+			for c,chr in enumerate(rank):
+				if chr.isdigit():
+					temp = c
+				else:
+					break
 
-			form =  team.find("td", {'class':'form'})
-			form_ = form.find_all("span", {'class':'c43px'})
-			form_t = ""
-			for f in form_:
-				form_t += f.text + " "
+			rank = rank[:temp+1]
+			point = tds[-1].text
+			mp = tds[2].text
+			wins = tds[3].text
+			draw = tds[4].text
+			lost = tds[5].text
+			goals1 = tds[6].text
+			goals2 = tds[7].text
+			goals3 = tds[8].text
 
-			l = [rank, team_, point, mp, wins, draw, lost, goals1, goals2, goals3, form_t]
+			l = [rank, team_, point, mp, wins, draw, lost, goals1, goals2, goals3]
 
 			print(" ".join(l))
 

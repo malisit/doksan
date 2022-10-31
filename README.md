@@ -1,7 +1,7 @@
 # doksan
 A simple console application that enables hackers to get latest soccer scores and fixtures.  
 At the present moment, ```doksan``` supports English Premier League, Spanish Primera Division and Turkish Super League.  
-All data is being parsed from ```http://www.scorespro.com/```.  
+All data is being parsed from ```http://www.livescores.com/```.  
 
 ## Installation
 - Install via pip; ```pip install doksan```.

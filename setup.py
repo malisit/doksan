@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="doksan",
-    version="0.2.1",
+    version="0.2.2",
     description="Get soccer results and fixtures like a hacker.",
     long_description=README,
     long_description_content_type="text/markdown",

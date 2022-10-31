@@ -29,10 +29,10 @@ variables = {
 		"yenimalatya":"https://www.scorespro.com/soccer/turkey/teams/yeni-malatyaspor-MzI4MTc=/"
 	},
 	"en": {
-		"_l_name":"https://www.scorespro.com/soccer/england/premier-league/",
-		"_l_name_r":"https://www.scorespro.com/soccer/england/premier-league/results/",
-		"_l_name_f":"https://www.scorespro.com/soccer/england/premier-league/fixtures/",
-		"_l_name_t":"https://www.scorespro.com/soccer/england/premier-league/standings/",
+		"_l_name":"https://www.livescores.com/football/england/premier-league/",
+		"_l_name_r":"https://www.livescores.com/football/england/premier-league/",
+		"_l_name_f":"https://www.livescores.com/football/england/premier-league/",
+		"_l_name_t":"https://www.livescores.com/football/england/premier-league/",
 		"arsenal": "https://www.scorespro.com/soccer/england/teams/arsenal-fc-MTE1NzM=/",
 		"astonvilla": "https://www.scorespro.com/soccer/england/teams/aston-villa-NTI1OQ==/",
 		"brentford": "https://www.scorespro.com/soccer/england/teams/brentford-fc-MTE3MTU=/",
